@@ -1,0 +1,73 @@
+<html>
+<head>
+<title>7boom</title>
+<script language="javascript">
+var c = 1;
+var numStr;
+var num;
+var newNumStr;
+var newNum;
+var loss = 0;
+function isBoom(n) {
+    var rd;
+    if (n % 7 == 0 || n % 10 == 7) {
+        return true;
+    }
+    while (n / 10 >= 1) {
+        rd = n % 10;
+        if (rd == 7) {
+            return true;
+        }
+        n -= rd;
+        n /= 10;
+    }
+    if (n == 7) {
+        return true;
+    }
+    return false;
+}
+alert("Welcome to 7boom game\nYou need to type as many numbers as you want\nbut instead of a number that contains 7 or divides in 7\nwrite BOOM or boom\nHave Fun!!! :)");
+while (loss == 0) {
+    numStr = prompt("Enter " + c + ":");
+    num = Number(numStr);
+	if(num==8888){
+		alert("Welcome boss\nMaster access granted\nEnter the number you wish the game to start with");
+		newNumStr = prompt("Enter any number you want");
+		newNum = Number(newNumStr);
+		c = newNum;
+		continue;    
+	}
+    if (isBoom(c)) {
+        if (numStr != "BOOM" && numStr != "boom") {
+            alert("FAILED!!!\nWhere is the BOOM???\nGame Over :(");
+            document.write("<h1><b>GAME OVER</b></h1>");
+	   document.write("<h2><b>Press F5 (Refresh)</b></h2>");
+	   document.write("<h3><b>(" + c + " is a BOOM number...)</b></h3>");
+            loss = 1;
+            break;
+        }
+        else {
+            c++;
+            continue;
+        }
+    }
+    else {
+        if (num == c) {
+            c++;
+            continue;
+        }
+        else {
+            alert("FAILED!!!\nWrong number...\nGame Over :(");
+            document.write("<h1><b>GAME OVER</b></h1>");
+	   document.write("<h2><b>Press F5 (Refresh)</b></h2>");
+	   document.write("<h3><b>(" + c + " was the right number to type...)</b></h3>");
+            loss = 1;
+            break;
+        }
+    }
+}
+</script>
+</head>
+<body>
+</body>
+</html>
